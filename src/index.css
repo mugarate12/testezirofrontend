@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+}
+
+body {
+  background: #364042;
+  font-size: 16px;
+  color: #333;
+  font-family: 'Roboto',sans-serif;
+
+  overflow: hidden;
+}
+
+button {
+  border: 0 none;
+}
+
+button:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+button:hover {
+  cursor: pointer;
+
+  opacity: 0.8;
+  transition: 0.5s;
+}
