@@ -20,11 +20,11 @@ export default function Header({ cartCount }) {
 
   return (
     <header className='header-box'>
-      <button className='logo-btn'>
+      <button className='logo-btn' onClick={() => history.push('/')} >
         <img src={Logo} alt='logo' className='logo-img' />
       </button>
 
-      <button className='cart-btn' onClick={() => history.push('/cart')}>
+      <button className='cart-btn' onClick={() => history.push('/cart')} >
         <FaShoppingCart className='cart-img' />
         {renderCartCount()}
       </button>
