@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const HTMLWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
@@ -16,6 +17,14 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
+        test: /\.(html)$/,
+        use: [
+          {
+            loader: "html-loader"
+          }
+        ]
+      },
+      {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
@@ -27,9 +36,13 @@ module.exports = {
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
   output: {
-    path: path.resolve(__dirname, "dist/"),
-    publicPath: "/dist/",
+    path: path.resolve(__dirname, "public/"),
     filename: "bundle.js"
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HTMLWebPackPlugin({
+      template: './src/index.html'
+    })
+  ]
 }
