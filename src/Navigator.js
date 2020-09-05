@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,16 +7,19 @@ import {
 
 import './index.css'
 
-import Home from './pages/Home/index'
-import Cart from './pages/Cart/index'
+import Loading from './pages/Loading/index'
+const Home = lazy(() => import('./pages/Home/index'))
+const Cart = lazy(() => import('./pages/Cart/index'))
 
 export default function Navigator() {
   return (
     <Router>
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/cart' component={Cart} />
-      </Switch>
+      <Suspense fallback={Loading}>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/cart' component={Cart} />
+        </Switch>
+      </Suspense>
     </Router>
   )
 }

@@ -43,7 +43,7 @@ const Cart= () => {
   
             <p className='grid-products-body-price' >R${product.price}</p>
   
-            <button className='grid-products-body-btn' onClick={() => fetchRemoveProduct(product.id)}>
+            <button className='grid-products-body-btn' onClick={() => fetchRemoveProduct(product)}>
               <p className='grid-products-body-btn-text' >Remover</p>
             </button>
           </div>
@@ -66,9 +66,13 @@ const Cart= () => {
     }
   }
 
-  async function fetchRemoveProduct(productID) {
-    await api.delete(`/dev/cart?id=${productID}`)
+  async function fetchRemoveProduct(product) {
+    console.log(product.id)
+    console.log(`/dev/cart?id=${product.id}`)
+    await api.delete(`/dev/cart?id=${product.id}`)
       .then(async (response) => {
+        console.log(response)
+
         await api.get('/dev/cart')
           .then(response => {
             setProducts(response.data)
